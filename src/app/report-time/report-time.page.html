@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Time of offense</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <p class="info">Indicates when it happened</p>
+    <ion-list>
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [value]="reportDate" [(ngModel)]="reportDate"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>When did it happen?</ion-label>
+            <ion-select value="precise" [(ngModel)]="timeType">
+                <ion-select-option value="precise">Precise time</ion-select-option>
+                <ion-select-option value="approximate">Approximate (range)</ion-select-option>
+                <ion-select-option value="morning">Morning</ion-select-option>
+                <ion-select-option value="afternoon">Afternoon</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="timeType == 'precise' || timeType == 'approximate'">
+            <ion-label>Time</ion-label>
+            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="reportTime"></ion-datetime>
+        </ion-item>
+
+        <ion-item *ngIf="timeType == 'approximate'">
+            <ion-list lines="none" style="width: 100%">
+                <ion-list-header>
+                    Approximation +/- {{precision}} minutes
+                </ion-list-header>
+                <ion-item>
+                    <ion-range min="0" max="240" step="15" snaps="true" [(ngModel)]="precision" color="primary">
+                        <ion-label range-left>0</ion-label>
+                        <ion-label range-right>240</ion-label>
+                    </ion-range>
+                </ion-item>
+            </ion-list>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="light">
+        <ion-buttons slot="end">
+            <ion-button shape="round" color="primary" (click)="next()">Next <ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

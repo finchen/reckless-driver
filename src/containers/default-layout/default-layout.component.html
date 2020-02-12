@@ -1,0 +1,37 @@
+<ngx-loading-bar color="#87e687" includeSpinner="false" height="4px"></ngx-loading-bar>
+<ion-app>
+    <ion-split-pane>
+
+        <ion-menu>
+            <ion-header>
+                <ion-toolbar color="primary">
+                    <ion-title>Menu</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
+
+                <ion-list *ngIf="auth.authenticated">
+                    <ion-item *ngFor="let p of pages" (click)="goTo(p.route)">
+                        <ion-icon [name]="p.icon" slot="start"></ion-icon>
+                        {{p.title}}
+                    </ion-item>
+                    <ion-list-header *ngIf="auth.email">{{auth.email}}</ion-list-header>
+                    <ion-item (click)="logout()">
+                        <ion-icon name="log-out" slot="start"></ion-icon>
+                        Log out
+                    </ion-item>
+                </ion-list>
+                <ion-list>
+                    <ion-item (click)="goTo('login')" *ngIf="!auth.authenticated">
+                        <ion-icon name="log-in" slot="start"></ion-icon>
+                        Log in
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+
+        <ion-router-outlet main></ion-router-outlet>
+
+    </ion-split-pane>
+
+</ion-app>

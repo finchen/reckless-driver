@@ -1,0 +1,67 @@
+<div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)" [class.hovering]="isHovering">
+
+    <input type="file" id="fileLoader" accept="video/*|image/*" #fileLoader (change)="startUpload($event.target.files)" title="Load File" hidden />
+
+    <ion-button icon-left expand="full" (click)="fileLoader.click()">
+        <ion-icon slot="start" name="camera"></ion-icon> Select Photo/Video
+    </ion-button>
+
+</div>
+
+<ion-list *ngIf="isUploading">
+    <ion-item>
+        <ion-label *ngIf="!status.resize.completed">{{status.resize.label}}</ion-label>
+        <ion-label *ngIf="status.resize.completed">{{status.resize.labelCompleted}}</ion-label>
+        <ion-badge slot="end" color="success" *ngIf="status.resize.completed">ok</ion-badge>
+        <ion-badge slot="end" color="warning" *ngIf="!status.resize.completed">resizing</ion-badge>
+    </ion-item>
+    <ion-item>
+        <ion-label *ngIf="!status.upload.completed">{{status.upload.label}} {{percentage | async }}%</ion-label>
+        <ion-label *ngIf="status.upload.completed">{{status.upload.labelCompleted}}</ion-label>
+        <ion-badge slot="end" color="success" *ngIf="status.upload.completed">ok</ion-badge>
+        <ion-badge slot="end" color="warning" *ngIf="!status.upload.completed">uploading</ion-badge>
+    </ion-item>
+    <ion-item>
+        <ion-label *ngIf="!status.plate.completed">{{status.plate.label}}</ion-label>
+        <ion-label *ngIf="status.plate.completed">
+            {{status.plate.labelCompleted}}
+        </ion-label>
+        <ion-badge slot="end" color="success" *ngIf="status.plate.completed && vehicles.length === 0">none found</ion-badge>
+        <ion-badge slot="end" color="success" *ngIf="status.plate.completed && vehicles.length === 1">ok</ion-badge>
+        <ion-badge slot="end" color="warning" *ngIf="status.plate.completed && vehicles.length > 1">multiple</ion-badge>
+        <ion-badge slot="end" color="warning" *ngIf="!status.plate.completed">analyzing</ion-badge>
+    </ion-item>
+</ion-list>
+
+<div *ngIf="vehicles.length">
+    <p *ngIf="vehicles.length === 1" class="info">Identified Vehicle</p>
+    <p *ngIf="vehicles.length > 1" class="info">There is more than one vehicle. Please choose the right one</p>
+    <ion-list>
+        <ion-item *ngFor="let pV of vehicles" (click)="vehicles.length && selectVehicle(pV)">
+            <ion-icon style="margin-right: 20px;" color="primary" name="checkmark" item-end *ngIf="this.report.vehicle && pV.plate === this.report.vehicle.plate"></ion-icon>
+            <ion-label>
+                <h2>Plate Number: {{pV.plate}}</h2>
+                <p *ngIf="pV.vehicle.make.length && pV.vehicle.make[0].confidence > 20">Make: {{pV.vehicle.make[0].name}} <small>confidence {{pV.vehicle.make[0].confidence|number}}%</small></p>
+                <p *ngIf="pV.vehicle.make_model.length  && pV.vehicle.make_model[0].confidence > 20">Model: {{pV.vehicle.make_model[0].name}} <small>confidence {{pV.vehicle.make_model[0].confidence|number}}%</small></p>
+                <p *ngIf="pV.vehicle.color.length  && pV.vehicle.color[0].confidence > 20">Color: {{pV.vehicle.color[0].name}} <small>confidence {{pV.vehicle.color[0].confidence|number}}%</small></p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <p *ngIf="vehicles.length >= 1"><small>If the information detected are not correct, you can change it later</small></p>
+</div>
+
+<ion-grid *ngIf="report.photos && report.photos.length">
+    <ion-row>
+        <ion-col *ngFor="let photo of report.photos; index as pos" size="6">
+            <ion-card>
+                <img [src]="photo.url">
+                <ion-item>
+                    <ion-button slot="end" fill="clear" (click)="deleteImage(photo, pos)">
+                        <ion-icon slot="icon-only" name="trash"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+

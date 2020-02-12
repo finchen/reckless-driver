@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Sign Up</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div *ngIf="(auth.user) || {} as user">
+
+        <form class="list-form" [formGroup]="signupForm" *ngIf="!user.uid" (ngSubmit)="signup()">
+
+            <h3>Signup</h3>
+
+            <ion-item [ngClass]="{ invalid: email.hasError('*', ['touched', 'dirty']) }">
+                <ion-label position="floating">
+                    <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+                    Email
+                </ion-label>
+                <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+
+            <div *ngIf="email.invalid && email.dirty">
+                Your email doesn't look quite right...
+            </div>
+
+            <ion-item [ngClass]="{ invalid: password.hasError('*', ['touched', 'dirty']) }">
+                <ion-label position="floating">
+                    <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+                    Password
+                </ion-label>
+                <ion-input type="password" formControlName="password" required></ion-input>
+            </ion-item>
+
+            <div *ngIf="password.invalid && password.touched">
+                Password must be between 6 and 24 chars
+            </div>
+
+            <ion-text color="danger" *ngIf="errorMessage">{{errorMessage}}</ion-text>
+
+            <ion-row responsive-sm>
+                <ion-col>
+                    <ion-button type="submit" expand="block" [disabled]="!signupForm.valid">Submit</ion-button>
+                </ion-col>
+            </ion-row>
+
+        </form>
+
+    </div>
+
+</ion-content>

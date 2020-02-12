@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>My Reports</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list *ngIf="reports$ | async as reports; else loading">
+        <ng-container *ngIf="reports.length; else noReports">
+            <ion-item lines="full" detail="true" *ngFor="let report of reports" (click)="report.showDetail = !report.showDetail">
+                <ion-thumbnail slot="start" *ngIf="report.photos && report.photos.length; else noPhoto">
+                    <img [src]="report.photos[0].url">
+                </ion-thumbnail>
+                <ng-template #noPhoto>
+                    <ion-thumbnail slot="start">
+                        <img src="../../assets/img/grey.webp">
+                    </ion-thumbnail>
+                </ng-template>
+
+                <ion-label>
+                    <ion-text>
+                        <h2 color="primary">{{ report.created.seconds * 1000  | date:'EEEE d MMMM y H:mm' }}</h2>
+                        <p *ngFor="let type of report.types">{{ type.label }}</p>
+                        <ion-badge color="success" *ngIf="report.locked">submitted</ion-badge>
+                        <ion-badge color="warning" *ngIf="!report.locked">uncomplete</ion-badge>
+                        <!--<ion-badge color="success" *ngIf="report.purchased">purchased</ion-badge>-->
+                        
+                    </ion-text>
+
+                    <ion-row align-items-center [ngClass]="{'locked': report.locked}" *ngIf="report.showDetail">
+                        <ion-col>
+                            <p *ngIf="report.vehicle && report.vehicle.plate">Plate: {{ report.vehicle.plate}}</p>
+                            <p *ngIf="report.vehicle && report.vehicle.color">Color: {{ report.vehicle.color}}</p>
+                        </ion-col>
+                        <ion-col>
+                            <ion-button (click)="loadAndRedirect(report)" *ngIf="!report.locked && report.purchased">
+                                Resume
+                            </ion-button>
+                            <buy-now *ngIf="!report.locked && !report.purchased" [label]="'Resume'"
+                                     [confirm]="'Resume and submit the report'"
+                                     [report]="report"
+                                     [price]="100"
+                                     [redirect]="'/report'">
+                            </buy-now>
+                            <ion-button>Delete Report</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-label>
+            </ion-item>
+        </ng-container>
+        <ng-template #noReports>No reports. Create a new one from the home page</ng-template>
+    </ion-list>
+    <ng-template #loading>
+        <div>Loading...</div>
+    </ng-template>
+</ion-content>
+

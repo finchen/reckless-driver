@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Sign In with Your Phone Number</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div [hidden]="user">
+
+        <form class="list-form" [formGroup]="phoneForm">
+            <ion-list>
+                <ion-item [ngClass]="{ invalid: phoneNumber.invalid && phoneNumber.touched }">
+                    <ion-label position="stacked">
+                        <ion-icon name="call" class="text-primary"></ion-icon>
+                        Mobile Phone Number:
+                    </ion-label>
+                    <ion-input type="text" formControlName="number" placeholder="Your mobile number" maxlength="12"></ion-input>
+                    <p color="danger" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+                        Mobile phone number is not valid. It must starts with 02
+                    </p>
+                </ion-item>
+                
+
+                <ion-item>
+                    <div id="recaptcha-container"></div>
+                </ion-item>
+            </ion-list>
+
+            <ion-row responsive-sm>
+                <ion-col>
+                    <ion-button (click)="sendLoginCode()" expand="block">SMS Text Login Code</ion-button>
+                </ion-col>
+            </ion-row>
+
+            <ion-list *ngIf="windowRef && windowRef.confirmationResult">
+
+                <ion-item [ngClass]="{ invalid: verification.invalid && verification.touched }">
+                    <ion-label position="stacked">
+                        Enter your Verification Code Here
+                    </ion-label>
+                    <ion-input type="text" name="code" formControlName="verification" maxlength="6"></ion-input>
+                </ion-item>
+            </ion-list>
+
+            <ion-text color="danger" *ngIf="errorMessage">{{errorMessage}}</ion-text>
+
+            <ion-row responsive-sm *ngIf="windowRef && windowRef.confirmationResult">
+                <ion-col>
+                    <ion-button (click)="verifyLoginCode()" expand="block">Verify</ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
+
+    </div>
+
+    <div *ngIf="user">
+        You have successfully logged in with your phone number!
+
+        UserId: {{ user?.uid }}
+
+    </div>
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Photos / Video</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <p class="info" *ngIf="!report.photos || report.photos.length == 0">Do you have any photo or video?</p>
+    <file-upload [report]="report"></file-upload>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="light">
+        <ion-buttons slot="end">
+            <ion-button shape="round" color="primary" (click)="next()">Next <ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

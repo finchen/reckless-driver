@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Thank you</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <p>Your quick report has been saved</p>
+    <p>You have 2 weeks to complete the report and submit it.</p>
+    <p>The report is available to complete in the <ion-button routerLink="/reports" routerDirection="root">My Reports</ion-button></p>
+
+    <div *ngIf="(user$ | async)?.isAnonymous == true">
+        <p>Register to keep track of your report. (Don't worry your report is still anonymous)</p>
+
+        <ion-row responsive-sm>
+            <ion-col>
+                <ion-button (click)="googleUpgrade()" color="google" expand="block"><ion-icon slot="start" name="logo-google" angularticsAction="login" angularticsValue="google"></ion-icon> Register with Google</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button (click)="loginWithFacebook()" color="facebook" expand="block"><ion-icon slot="start" name="logo-facebook" angularticsAction="login" angularticsValue="facebook"></ion-icon> Register with Facebook</ion-button>
+            </ion-col>
+        </ion-row>
+
+        <ion-row responsive-sm>
+            <ion-col>
+                <ion-button (click)="loginWithPhone()" color="secondary" expand="block" angularticsAction="login" angularticsValue="sms"><ion-icon slot="start" name="text"></ion-icon> Register by SMS</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button (click)="onSignup()" color="primary" expand="block" angularticsAction="login" angularticsValue="signup">Signup</ion-button>
+            </ion-col>
+        </ion-row>
+
+        <ion-row responsive-sm>
+            <ion-col>
+                <ion-button color="light" routerLink="/" routerDirection="root" expand="block">Skip</ion-button>
+            </ion-col>
+        </ion-row>
+
+    </div>
+
+    <img src="../../assets/img/busted.webp" />
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="light">
+        <ion-buttons slot="end">
+            <ion-button shape="round" color="primary" routerLink="/"  routerDirection="root">Home</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>
