@@ -1,5 +1,9 @@
 https://recklessdriver.co.nz
 
+A prototype of a website to report bad driver
+- Angular7
+- Firebase
+
 # config
 
 firebase config required in 
