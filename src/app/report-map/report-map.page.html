@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title *ngIf="!step.locationSelected">Location</ion-title>
+        <ion-title *ngIf="step.locationSelected">Direction of the offender</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <div style="height: 100%"
+         leaflet
+         (leafletMapReady)="onMapReady($event)"
+         [leafletOptions]="options"
+         [leafletLayers]="layers"
+         (leafletClick)="handleClick($event)"
+         (leafletMapMove)="handleEvent('leafletMapMove', $event)"
+         (leafletMapMoveEnd)="handleEvent('leafletMapMoveEnd', $event)">
+    </div>
+</ion-content>
+
+<ion-footer *ngIf="step.mapHasMoved">
+    <ion-toolbar color="light">
+        <ion-buttons slot="start">
+            <ion-button shape="round" (click)="back()">Back </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button *ngIf="step.locationSelected" shape="round" color="primary" (click)="next()">Skip </ion-button>
+            <ion-button shape="round" color="primary" (click)="next()">Next <ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

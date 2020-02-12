@@ -1,0 +1,106 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Vehicle</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <div ion-item style="text-align: center;">
+            <p>Have you seen the plate number?</p>
+            <ion-button color="light" large (click)="showFormPlate = false; showFormVehicle = true" [strong]="showFormVehicle">
+                No
+            </ion-button>
+            <ion-button color="light" large (click)="showFormPlate = true; showFormVehicle = false" [strong]="showFormPlate">
+                Yes
+            </ion-button>
+        </div>
+    </ion-list>
+
+    <form (ngSubmit)="submit()" [formGroup]="formPlate" *ngIf="showFormPlate">
+        <ion-list>
+            <ion-item [ngClass]="{ invalid: formPlate.get('plate').hasError('*', ['touched', 'dirty']) }">
+                <ion-label position="fixed">Plate Number</ion-label>
+                <ion-input type="text" formControlName="plate"  clearInput ></ion-input>
+            </ion-item>
+
+            <ion-item [ngClass]="{ invalid: formPlate.get('color').hasError('*', ['touched', 'dirty']) }">
+                <ion-label  position="fixed">Car Color</ion-label>
+                <ion-input type="text" formControlName="color" clearInput ></ion-input>
+            </ion-item>
+
+            <ion-item [ngClass]="{ invalid: formPlate.get('driver').hasError('*', ['touched', 'dirty']) }">
+                <ion-label  position="fixed">Driver</ion-label>
+                <ion-select formControlName="driver">
+                    <ion-select-option value="male">Male</ion-select-option>
+                    <ion-select-option value="female">Female</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item [ngClass]="{ invalid: formPlate.get('driverAge').hasError('*', ['touched', 'dirty']) }">
+                <ion-label  position="fixed">Driver Age</ion-label>
+                <ion-select formControlName="driverAge">
+                    <ion-select-option value="young">Young</ion-select-option>
+                    <ion-select-option value="middle_age">Middle Age</ion-select-option>
+                    <ion-select-option value="elderly">Elderly</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+        </ion-list>
+    </form>
+    <form (ngSubmit)="submit()" [formGroup]="formVehicle" *ngIf="showFormVehicle">
+        <ion-item [ngClass]="{ invalid: formVehicle.get('type').hasError('*', ['touched', 'dirty']) }">
+            <ion-label  position="fixed">Type</ion-label>
+            <ion-input type="text" formControlName="type" clearInput ></ion-input>
+        </ion-item>
+
+        <ion-item [ngClass]="{ invalid: formVehicle.get('make').hasError('*', ['touched', 'dirty']) }">
+            <ion-label  position="fixed">Make</ion-label>
+            <ion-input type="text" formControlName="make" clearInput ></ion-input>
+        </ion-item>
+
+        <ion-item [ngClass]="{ invalid: formVehicle.get('model').hasError('*', ['touched', 'dirty']) }">
+            <ion-label  position="fixed">Model</ion-label>
+            <ion-input type="text" formControlName="model" clearInput ></ion-input>
+        </ion-item>
+
+        <ion-item [ngClass]="{ invalid: formVehicle.get('color').hasError('*', ['touched', 'dirty']) }">
+            <ion-label  position="fixed">Color</ion-label>
+            <ion-input type="text" formControlName="color" clearInput ></ion-input>
+        </ion-item>
+
+        <ion-item [ngClass]="{ invalid: formPlate.get('driver').hasError('*', ['touched', 'dirty']) }">
+            <ion-label  position="fixed">Driver</ion-label>
+            <ion-select formControlName="driver" interface="popover"  placeholder="Select gender">
+                <ion-select-option value="male">Male</ion-select-option>
+                <ion-select-option value="female">Female</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item [ngClass]="{ invalid: formPlate.get('driverAge').hasError('*', ['touched', 'dirty']) }">
+            <ion-label  position="fixed">Driver Age</ion-label>
+            <ion-select formControlName="driverAge" interface="popover" placeholder="Select age group">
+                <ion-select-option value="young">Young</ion-select-option>
+                <ion-select-option value="middle_age">Middle Age</ion-select-option>
+                <ion-select-option value="elderly">Elderly</ion-select-option>
+            </ion-select>
+        </ion-item>
+    </form>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="light">
+        <ion-buttons slot="start">
+            <ion-button shape="round" (click)="save()">Save as Draft</ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button shape="round" color="primary" (click)="next()">Submit <ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,13 @@
+app-report {
+    ion-icon + ion-label {
+        margin-left: 10px;
+    }
+
+    .clickableOption {
+        cursor: pointer;
+    }
+
+    .clickableOption:hover{
+        background-color: #f7f4f4;
+    }
+}

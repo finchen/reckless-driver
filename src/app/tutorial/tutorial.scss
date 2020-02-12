@@ -1,0 +1,43 @@
+page-tutorial {
+    .swiper-pagination {
+        position: relative;
+    }
+
+    .swiper-slide {
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .slide-title {
+        margin-top: 2.8rem;
+        color: var(--ion-color-primary);
+    }
+
+    .slide-image {
+        max-height: 50vh;
+        max-width: 70%;
+        margin: 20px 0 36px 0;
+    }
+
+    .slide-image.small {
+        width: 200px;
+        margin: 20px 0 36px 0;
+    }
+
+
+    b {
+        font-weight: 500;
+    }
+
+    p {
+        padding: 0 40px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #60646B;
+
+        b {
+            color: #000000;
+        }
+    }
+}

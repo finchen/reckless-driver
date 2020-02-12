@@ -1,0 +1,80 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="tutorial-page">
+
+    <ion-slides #slides [ngClass]="[animateCss]" (ionSlideWillChange)="onSlideChangeStart($event)" (ionSlideTransitionEnd)="onSlideTransitionEnd($event)"  pager="true">
+        <ion-slide>
+            <img src="assets/img/fast-car.webp" class="slide-image slide-right" />
+            <div class="wrapper">
+                <h2 class="slide-title">
+                    Report Reckless Driver
+                </h2>
+                <p>
+                    Welcome to
+                    <b>RecklessDriver.co.nz</b>
+                </p>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <img [lazyLoad]="img.slide2" class="slide-image" [scrollObservable]="slides.ionSlideTransitionEnd" style="margin-bottom: 0" />
+            <div class="wrapper">
+                <h2 class="slide-title">
+                    Fill in as much information as you have
+                </h2>
+                <p>You don't have to own a dash cam</p>
+                <p>or have a photo</p>
+                <p>or see the plate number</p>
+                <p>or know the car make and model</p>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <img [lazyLoad]="img.slide3" class="slide-image" [scrollObservable]="slides.ionSlideTransitionEnd" />
+            <div class="wrapper">
+                <h2 class="slide-title">Other people are reporting too</h2>
+                <p>Join together with the opportunity to file reckless driving reports and increases the odds that the perpetrators of careless behavior get busted</p>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <img [lazyLoad]="img.slide4" class="slide-image" [scrollObservable]="slides.ionSlideTransitionEnd" />
+            <div class="wrapper">
+                <h2 class="slide-title">Busted!</h2>
+                <p>
+                    Multiple reports of the same driver? Shocking driving? Repetitive reckless driving?
+                </p>
+                <p>
+                    We will inform you of the action taken.
+                </p>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <img [lazyLoad]="img.slide5" class="slide-image slide-bottom small" [scrollObservable]="slides.ionSlideTransitionEnd" />
+            <div class="wrapper">
+                <h2 class="slide-title">Ready to Report?</h2>
+                    <!--
+                    <p>First 5 reports are free. Then $1</p>
+                    <p>5% are donated to <a href="http://www.brake.org.nz/" _target="blank">Brake Aotearoa</a></p>
+                    -->
+                    <p>This is free</p>
+                    <p>You must login to report</p>
+                    <p><strong>We won't disclose your information to anyone</strong></p>
+                    <ion-button fill="clear" (click)="startApp()">
+                        Continue
+                        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+                    </ion-button>
+                </div>
+            </ion-slide>
+        </ion-slides>
+        <ion-button color="primary" fill="clear" class="swiper-button-prev swiper-button-black" (click)="prev()"></ion-button>
+        <ion-button color="primary" fill="clear" class="swiper-button-next swiper-button-black" (click)="next()"></ion-button>
+
+    </ion-content>

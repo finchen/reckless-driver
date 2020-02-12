@@ -1,0 +1,170 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Reckless Driver - Report bad drivers in New Zealand</title>
+    <base href="/" />
+    <meta name="theme-color" content="#D4145A">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="We use the collaborative tool to match reports and identify reckless drivers. Report bad drivers from the website or your smartphone. Community watch! It's easy." />
+
+    <meta property="og:url" content="https://recklessdriver.co.nz" />
+    <meta property="og:type" content="Reckless Driver" />
+    <meta property="og:description" content="Report now a bad driver from the website or your smartphone. Community watch!" />
+    <meta property="og:image" content="https://recklessdriver.co.nz/assets/img/reckless-192.png" />
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="assets/icon/favicon.png">
+
+    <!--
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log('service worker installed'))
+                .catch(err => console.error('Error', err));
+        }
+    </script>
+    -->
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script async src="https://checkout.stripe.com/checkout.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139694320-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-139694320-1');
+    </script>
+    <link rel="stylesheet" async type="text/css" href="/assets/fonts/flaticon.css">
+</head>
+<body>
+    <app-root>
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div style="text-align: center;padding-top: 25px;">RecklessDriver.co.nz</div>
+    </app-root>
+    <style>
+        .lds-roller {
+            display: block;
+            margin: 40% auto 0 auto;
+            position: relative;
+            width: 64px;
+            height: 64px
+        }
+
+            .lds-roller div {
+                animation: lds-roller 1.2s cubic-bezier(.5,0,.5,1) infinite;
+                transform-origin: 32px 32px
+            }
+
+                .lds-roller div:after {
+                    content: " ";
+                    display: block;
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: #D4145A;
+                    margin: -3px 0 0 -3px
+                }
+
+                .lds-roller div:nth-child(1) {
+                    animation-delay: -36ms
+                }
+
+                    .lds-roller div:nth-child(1):after {
+                        top: 50px;
+                        left: 50px
+                    }
+
+                .lds-roller div:nth-child(2) {
+                    animation-delay: -72ms
+                }
+
+                    .lds-roller div:nth-child(2):after {
+                        top: 54px;
+                        left: 45px
+                    }
+
+                .lds-roller div:nth-child(3) {
+                    animation-delay: -108ms
+                }
+
+                    .lds-roller div:nth-child(3):after {
+                        top: 57px;
+                        left: 39px
+                    }
+
+                .lds-roller div:nth-child(4) {
+                    animation-delay: -144ms
+                }
+
+                    .lds-roller div:nth-child(4):after {
+                        top: 58px;
+                        left: 32px
+                    }
+
+                .lds-roller div:nth-child(5) {
+                    animation-delay: -.18s
+                }
+
+                    .lds-roller div:nth-child(5):after {
+                        top: 57px;
+                        left: 25px
+                    }
+
+                .lds-roller div:nth-child(6) {
+                    animation-delay: -216ms
+                }
+
+                    .lds-roller div:nth-child(6):after {
+                        top: 54px;
+                        left: 19px
+                    }
+
+                .lds-roller div:nth-child(7) {
+                    animation-delay: -252ms
+                }
+
+                    .lds-roller div:nth-child(7):after {
+                        top: 50px;
+                        left: 14px
+                    }
+
+                .lds-roller div:nth-child(8) {
+                    animation-delay: -288ms
+                }
+
+                    .lds-roller div:nth-child(8):after {
+                        top: 45px;
+                        left: 10px
+                    }
+
+        @keyframes lds-roller {
+            0% {
+                transform: rotate(0)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+    </style>
+    <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({ c: 'b03a0004-afe7-414f-a2d6-ef90cfc1d6bb', f: true }); done = true; } }; })();</script>
+    <script type="text/javascript">
+        (function () {
+            window.__insp = window.__insp || [];
+            __insp.push(['wid', 439662826]);
+            var ldinsp = function () {
+                if (typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=439662826&r=' + Math.floor(new Date().getTime() / 3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x);
+            };
+            setTimeout(ldinsp, 1000);
+        })();
+    </script>
+</body>
+</html>

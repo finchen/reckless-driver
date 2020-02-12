@@ -1,0 +1,16 @@
+<ion-button 
+            color="primary" 
+            expand="block" 
+            (click)="presentAlertConfirm()"
+            angulartics2On="click"
+            angularticsAction="BuyClick" 
+            >
+    {{ label }} {{ price | stripe }}
+</ion-button>
+
+<!--
+<div class="button is-success" *ngIf="hasPurchased | async" disabled>
+    Already Purchased!
+</div>
+-->
+

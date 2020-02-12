@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Quick Report</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <p>Disclaimer: please make sure to not drive when using. You must pull off or a passenger can fill the report. </p>
+
+    <ion-list *ngIf="!initializing">
+        <ion-item [ngClass]="{'disabled': !options.time, 'recorded': dataService.hasTime() }">
+            <ion-label>
+                <h2>Record Time</h2>
+                <p *ngIf="dataService.hasTime()">Ok</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="options.time"></ion-toggle>
+        </ion-item>
+
+        <ion-item [ngClass]="{'disabled': !options.location, 'recorded': dataService.hasLocation() }">
+            <ion-label>
+                <h2>Record Location</h2>
+                <p *ngIf="dataService.hasLocation()">Ok</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="options.location" (ngModelChange)="toggleLocation()"></ion-toggle>
+        </ion-item>
+
+        <ion-item [ngClass]="{'disabled': !options.direction, 'recorded': count <= 0 && dataService.report.waypoints.length }">
+            <ion-label>
+                <h2>Record Direction ({{count}}s)</h2>
+                <p *ngIf="count > 0 && dataService.report.waypoints.length">Recording</p>
+                <p *ngIf="count <= 0 && dataService.report.waypoints.length">Ok</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="options.direction" (ngModelChange)="toggleDirection()"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Offender opposite of my direction</ion-label>
+            <ion-toggle [(ngModel)]="options.opposite"></ion-toggle>
+        </ion-item>
+
+        <ion-item [ngClass]="{'recorded': file }">
+            <ion-label>Take a photo</ion-label>
+
+            <input type="file" id="fileLoader" accept="video/*|image/*" #fileLoader (change)="onPhotoChange($event)" title="Load File" hidden />
+            <ion-button slot="end" icon-left (click)="fileLoader.click()">
+                <ion-icon slot="start" name="camera"></ion-icon> Select Photo
+            </ion-button>
+
+        </ion-item>
+
+        <ion-item [ngClass]="{'recorded': dataService.report.vehicle && dataService.report.vehicle.plate }">
+            <ion-label>Plate Number</ion-label>
+            <ion-input slot="end" placeholder="eg. XXX123" [(ngModel)]="plateNumber" (ngModelChange)="onPlateNumber()"></ion-input>
+            <ion-button slot="end" icon-left (click)="speechToPlate()" *ngIf="supportSpeech">
+                <ion-icon name="mic"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ion-list>
+
+
+    <div style="height: 40%; width: 100%"
+         leaflet
+         (leafletMapReady)="onMapReady($event)"
+         [leafletOptions]="mapOptions"
+         [leafletLayers]="layers">
+    </div>
+
+</ion-content>
+
+<ion-footer *ngIf="captured">
+    <ion-toolbar color="light">
+        <ion-buttons slot="end">
+            <ion-button shape="round" color="primary" (click)="next()">Next <ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

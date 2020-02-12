@@ -1,0 +1,23 @@
+app-home {
+    .content {
+        background: rgba(255,255,255,0.9);
+        padding: 25px;
+        border-radius: 5px;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+        margin: 20px auto 0;
+        border-radius: 10%;
+        background: url("../../assets/img/reckless.webp") no-repeat;
+        background-size: 100%;
+    }
+
+    ion-content {
+        background-image: url(assets/img/bg2.webp);
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}
