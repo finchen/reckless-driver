@@ -31,8 +31,11 @@ import { trigger, transition, style, animate } from "@angular/animations";
 export class ReportPage implements OnInit {
     hasOneSelected: boolean = false;
 
+    /**
+     * Report type
+     * Will be moved later on
+     */
     public options = [
-
         {
             group: 'Speed', icon: "#fast", items: [
                 { key: 'speed-limit', label: 'Exceeding the speed limit', description: '', selected: false, group: 'speed', icon: "#fast", captureSpeed: true, speedText: 'above' },
@@ -57,7 +60,7 @@ export class ReportPage implements OnInit {
         {
             group: 'Parking', icon: "#parking-1", items: [
                 { key: 'car-park-disabled', label: 'Parked on disabled car park', description: 'Without a mobility parking permit', selected: false, group: 'parking' },
-                { key: 'car-park', label: 'Parking', description: 'Dangerous parking or others', selected: false, group: 'parking' },
+                { key: 'car-park', label: 'Parking', description: 'Should not be parked here', selected: false, group: 'parking' },
             ]
         },
         {
@@ -87,8 +90,6 @@ export class ReportPage implements OnInit {
         }
 
     ];
-
-    //public selected: Array<string> = [];
 
     constructor(public router: Router, public route: ActivatedRoute, private reportService: ReportService, private authService: AuthService, private dataService: DataService, public toastController: ToastController) { }
 

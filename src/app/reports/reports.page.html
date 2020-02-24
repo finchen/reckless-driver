@@ -10,7 +10,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
     <ion-list *ngIf="reports$ | async as reports; else loading">
         <ng-container *ngIf="reports.length; else noReports">
             <ion-item lines="full" detail="true" *ngFor="let report of reports" (click)="report.showDetail = !report.showDetail">

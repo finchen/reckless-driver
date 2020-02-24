@@ -10,7 +10,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
     <p class="info" *ngIf="!report.photos || report.photos.length == 0">Do you have any photo or video?</p>
     <file-upload [report]="report"></file-upload>
 </ion-content>

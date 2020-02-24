@@ -3,7 +3,9 @@ import { Report } from "../models/report.model";
 import { Injectable } from "@angular/core";
 import { OpenAlprResponse } from "../models/OpenAlprResponse";
 
-
+/**
+ * Report Data
+ */
 @Injectable()
 export class DataService  {
     private _report: Report = null;

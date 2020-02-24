@@ -50,7 +50,6 @@ export class ReportService {
             return query;
         };
 
-        //return this.afs.collection<Report>(this.path, ref).valueChanges();
         const reportsCollection = this.afs.collection<Report>(this.path, ref);
         return reportsCollection.snapshotChanges().pipe(
             map( (actions: DocumentChangeAction<Report>[]) => actions.map(a => {
@@ -59,31 +58,6 @@ export class ReportService {
                 return { id, ...data };
             }))
         );
-        /*return reportsDocument.snapshotChanges().pipe(
-            map((changes) => {
-                changes.map(a => {
-                    const data = a.payload.doc.data() as Report;
-                    const id = a.payload.doc.id;
-                    return { id, ...data };
-                }))
-            }));*/
     }
-
-    /*getCollection$(ref?: QueryFn): Observable<Report[]> {
-        return this.afs.collection<Report>(this.path, ref).snapshotChanges().pipe(map(action => {
-            const data = action.payload.data() as Report;
-            const id = action.payload.id;
-            return { id, ...data };
-        }));
-
-        return this.afs.collection<Report>(this.path, ref)
-            .snapshotChanges().map(actions => {
-                return actions.map(a => {
-                    const data = a.payload.doc.data() as Report;
-                    const id = a.payload.doc.id;
-                    return { id, ...data };
-                });
-            });
-    }*/
 
 }

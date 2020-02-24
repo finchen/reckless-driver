@@ -1,3 +1,0 @@
-﻿onmessage = function (event) {
-
-};

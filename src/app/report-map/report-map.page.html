@@ -27,7 +27,7 @@
 <ion-footer *ngIf="step.mapHasMoved">
     <ion-toolbar color="light">
         <ion-buttons slot="start">
-            <ion-button shape="round" (click)="back()">Back </ion-button>
+            <ion-button *ngIf="step.locationSelected" shape="round" (click)="back()">Back </ion-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button *ngIf="step.locationSelected" shape="round" color="primary" (click)="next()">Skip </ion-button>

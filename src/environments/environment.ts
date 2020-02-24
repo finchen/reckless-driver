@@ -4,12 +4,12 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
     production: false,
-    sentry_dsn: '',
-    stripeKey: '',
+    sentry_dsn: 'https://9a3717c018ac4112b87689a7d15983d4@sentry.io/1430719',
+    stripeKey: 'pk_test_Lt93JdbveqU8hH4KHVrt8oip00NVlZ01S3',
     opennodePay: 'https://dev-checkout.opennode.co/',
     googleAnalytics: {
         domain: 'auto',
-        trackingId: '' 
+        trackingId: 'UA-139694320-1' 
     }
 };
 
