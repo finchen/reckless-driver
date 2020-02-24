@@ -10,6 +10,15 @@ export const environment = {
     googleAnalytics: {
         domain: 'auto',
         trackingId: 'UA-139694320-1' 
+    },
+    firebase: {
+        apiKey: "",
+        authDomain: "",
+        databaseURL: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: ""
     }
 };
 

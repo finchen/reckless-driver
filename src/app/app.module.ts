@@ -12,7 +12,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 /* firebase */
-import { firebaseConfig } from "../services/config.service";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -88,7 +87,7 @@ import { AboutPageModule } from "./about/about.module";
       FormsModule,
       ReactiveFormsModule,
 
-      AngularFireModule.initializeApp(firebaseConfig.fire),
+      AngularFireModule.initializeApp(environment.firebase),
       AngularFirestoreModule.enablePersistence(),
       AngularFireStorageModule, // normal DB
       AngularFireDatabaseModule, // live DB. used for payment
