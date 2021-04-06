@@ -1,4 +1,4 @@
-https://recklessdriver.co.nz
+https://bad-driver-f70d1.web.app
 
 A prototype of a website to report bad driver
 - Angular7
